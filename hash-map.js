@@ -29,31 +29,55 @@ export class HashMap{
       set(key, value){
         // insert key value pair into hash map
 
-          const hashedBucketNumber = hash(key);
+          const hashedBucketNumber = this.hash(key);
           let theRightBucket = this.buckets[hashedBucketNumber];
      //    find the right bucket
-     
-          if (!theRightBucket.head){
-               let newBucket = new BucketTypeLinkedList;
+
+          if (!theRightBucket){
+                // console.log('right bucket working')
+                let newBucketList = new BucketTypeLinkedList;
      //        make a new bucket, append the key, and the newBucket will be the right bucket
-               newBucket.append(key, value);
-               theRightBucket = newBucket;
-          }else {
+               newBucketList.append(key, value);
+               this.buckets[hashedBucketNumber] = newBucketList;
+               // console.log({
+               //      "theRightBucket":this.buckets[hashedBucketNumber]
+               // });
+               this.size++;
+          }else if(theRightBucket !== null){
+               console.log('right bucket is null')
                let currentNode = theRightBucket.head;
-               
-               
-               let counter = 0;
-               while (currentNode.nextNode !== null){
-                    if (currentNode.key === key){
+
+               switch(true){
+                    case currentNode.key === key:
+                         console.log('key = key')
                          currentNode.value = value;
-                         counter++;
-                    }
-                    currentNode = currentNode.nextNode
-               }
-               if (counter === 0){
-                    theRightBucket.append(key, value);
-               }
+                         break;
+                    default:
+                         console.log('default')
+                         break;
+               }     
           }
+           
+
+                    // if (currentNode.next === null){
+                    //      console.log('working')
+
+                    // let counter = 0;
+                    // while (currentNode.nextNode !== null){
+                    //      if (currentNode.key === key){
+                    //           currentNode.value = value;
+                    //           counter++;
+                    //      }
+                    //      currentNode = currentNode.nextNode
+                    // }
+                    // if (counter === 0){
+                    //      theRightBucket.append(key, value);
+                    //      this.size++;
+                    // }
+                    // }
+          // }
+              
+          // }
       }
 
       checkCollision(key, value){
@@ -61,52 +85,49 @@ export class HashMap{
 
 
         }
-
+     
+     get(key){
+     //       takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
+     
+          }
+     
+          has(key){
+     //       takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
+     
+          }
+     
+          remove(key){
+     //       takes a key as an argument. If the given key is in the hash map, it should remove the entry with that key and return true. If the key isn’t in the hash map, it should return false.
+     
+          }
+     
+          length(){
+     //       returns the number of stored keys in the hash map.
+     
+          }
+     
+          clear(){
+     //       removes all entries in the hash map.
+     
+          }
+     
+          keys(){
+     //       returns an array containing all the keys inside the hash map.
+     
+          }
+     
+          values(){
+     //       returns an array containing all the values.
+     
+          }
+     
+          entries(){
+     //       returns an array that contains each key, value pair. Example: [[firstKey, firstValue], [secondKey, secondValue]]
+     
+          }
 
 
 
 
       }
-      
-
-     get(key){
-//       takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
-
-     }
-
-     has(key){
-//       takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
-
-     }
-
-     remove(key){
-//       takes a key as an argument. If the given key is in the hash map, it should remove the entry with that key and return true. If the key isn’t in the hash map, it should return false.
-
-     }
-
-     length(){
-//       returns the number of stored keys in the hash map.
-
-     }
-
-     clear(){
-//       removes all entries in the hash map.
-
-     }
-
-     keys(){
-//       returns an array containing all the keys inside the hash map.
-
-     }
-
-     values(){
-//       returns an array containing all the values.
-
-     }
-
-     entries(){
-//       returns an array that contains each key, value pair. Example: [[firstKey, firstValue], [secondKey, secondValue]]
-
-     }
-
-}       
+           

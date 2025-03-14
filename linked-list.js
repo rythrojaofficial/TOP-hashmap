@@ -15,6 +15,7 @@ export class BucketTypeLinkedList{
         if (this.head === null){
             this.head = node;
             this.tail = node;
+            // console.log('appending')
         }else {
             this.tail.nextNode = node;
             this.tail = node;
