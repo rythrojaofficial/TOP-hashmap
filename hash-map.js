@@ -46,12 +46,20 @@ export class HashMap{
           }else if(theRightBucket !== null){
                console.log('right bucket is null')
                let currentNode = theRightBucket.head;
-
                switch(true){
                     case currentNode.key === key:
                          console.log('key = key')
                          currentNode.value = value;
                          break;
+                    case currentNode.key !== key 
+                         && currentNode.next === null:
+                         theRightBucket.append(key, value);
+                         break;
+                    case currentNode.key !== key
+                         && currentNode.next !== null:
+                         while (currentNode.next !== null){
+
+                         }
                     default:
                          console.log('default')
                          break;
