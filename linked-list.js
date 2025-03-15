@@ -17,7 +17,7 @@ export class BucketTypeLinkedList{
             this.tail = node;
             // console.log('appending')
         }else {
-            this.tail.nextNode = node;
+            this.tail.next = node;
             this.tail = node;
         }
         this.size++
@@ -31,7 +31,7 @@ export class BucketTypeLinkedList{
             this.head = currentNode;
             this.tail = currentNode;
         }else {
-            currentNode.nextNode = initialHead;
+            currentNode.next = initialHead;
             this.head = currentNode;
         }
         this.size++
@@ -43,7 +43,7 @@ export class BucketTypeLinkedList{
         let currentNode = this.head;{
             let j = 0;
             while (j < index){
-                currentNode = currentNode.nextNode;
+                currentNode = currentNode.next;
                 j++
             }return currentNode;     
         }
@@ -58,17 +58,17 @@ export class BucketTypeLinkedList{
                 // empty list 
                 console.log(errorMessage('no tail'));
                 return;
-            case (this.head.nextNode === null):
+            case (this.head.next === null):
                 // single item list
                 this.head === null;
                 this.size--;
                 return;
             default:
                 let currentNode = this.head;
-                while(currentNode.nextNode){
-                    currentNode = currentNode.nextNode;
+                while(currentNode.next){
+                    currentNode = currentNode.next;
                 }
-                currentNode.nextNode = null;
+                currentNode.next = null;
                 this.tail = currentNode;
                 this.size--;
                 return;
@@ -119,8 +119,8 @@ export class BucketTypeLinkedList{
         }else {
             const nodeBeforeIndex = this.at(index-1);
             const newNode = new Node(key, value);
-            newNode.nextNode = this.at(index);
-            nodeBeforeIndex.nextNode = newNode;
+            newNode.next = this.at(index);
+            nodeBeforeIndex.next = newNode;
             this.size++;
         }
     } 
@@ -142,7 +142,7 @@ export class BucketTypeLinkedList{
                 this.size--;
                 break;
             default:
-                this.at(index - 1).nextNode = this.at(index + 1);
+                this.at(index - 1).next = this.at(index + 1);
                 this.size--
                 break;
         }

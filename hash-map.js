@@ -108,11 +108,16 @@ export class HashMap{
                if (this.buckets[hashedBucketNumber] !== null){
                     let currentNode = this.buckets[hashedBucketNumber].head;
                     do {
-                         if (currentNode.key = key){
+                         if (currentNode.key === key){
                               return currentNode.value;
                          } else currentNode = currentNode.next;
                     } while (currentNode.next !== null)
-                    if (currentNode.next === null) return errorMessage(message);
+                         
+                    if (currentNode.next === null){
+                         if (currentNode.key === key){
+                              return currentNode.value;
+                         } else return errorMessage(message);
+                    } 
                } else return errorMessage(message)
           }
      
@@ -129,6 +134,15 @@ export class HashMap{
      
           length(){
      //       returns the number of stored keys in the hash map.
+               let counter = 0;
+               this.buckets.forEach((bucket) => {
+                    if (bucket !== null){
+                         let currentNode = bucket.head;
+                         do {
+                              counter++
+                         } while (currentNode.next !== null)
+                    }
+               })
      
           }
      

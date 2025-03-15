@@ -14,6 +14,20 @@ myHash.set('jacket', 'blue')
 myHash.set('kite', 'pink')
 myHash.set('lion', 'golden')
 
+let testArray = [
+    'apple', 
+    'banana',
+    'carrot',
+    'dog',
+    'elephant',
+    'frog',
+    'grape',
+    'hat',
+    'ice cream',
+    'jacket',
+    'kite',
+    'lion',
+];
 console.log({
     'hashmap':myHash,
     'bucket 0':myHash.buckets[0],
@@ -35,7 +49,10 @@ console.log({
 
 })
 
-console.log({
-    'get(hat)': myHash.get('hat'),
-    'has(kite)?': myHash.has('kite')
+testArray.forEach((key) =>{
+
+    console.log({
+        'key': key,
+        'value': myHash.get(key)
+    })
 })
