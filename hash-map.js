@@ -1,5 +1,6 @@
 import { Node } from "./node.js";
 import { BucketTypeLinkedList } from "./linked-list.js";
+import { errorMessage } from "./console.js";
 
 
 
@@ -101,23 +102,26 @@ export class HashMap{
      
           get(key){
      //       takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
-     
+               const message = 'key not present in hash map';          
+
+               let hashedBucketNumber = this.hash(key);
+               if (this.buckets[hashedBucketNumber] !== null){
+                    let currentNode = this.buckets[hashedBucketNumber].head;
+                    do {
+                         if (currentNode.key = key){
+                              return currentNode.value;
+                         } else currentNode = currentNode.next;
+                    } while (currentNode.next !== null)
+                    if (currentNode.next === null) return errorMessage(message);
+               } else return errorMessage(message)
           }
      
           has(key){
      //       takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
-               let hashedBucketNumber = this.hash(key);
-                    if (this.buckets[hashedBucketNumber] !== null){
-                         let currentNode = this.buckets[hashedBucketNumber];
-                         do {
-                              if (currentNode.key = key){
-                                   return true;
-                              } else currentNode = currentNode.next;
-                         } while (currentNode.next !== null)
-                    }else return false;
-
+               if (this.get(key) === errorMessage('key not present in hash map')){
+                    return false
+               } else return true;          
           }
-     
           remove(key){
      //       takes a key as an argument. If the given key is in the hash map, it should remove the entry with that key and return true. If the key isn’t in the hash map, it should return false.
      

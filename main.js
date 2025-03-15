@@ -34,3 +34,8 @@ console.log({
     'bucket 15':myHash.buckets[15],
 
 })
+
+console.log({
+    'get(hat)': myHash.get('hat'),
+    'has(kite)?': myHash.has('kite')
+})
