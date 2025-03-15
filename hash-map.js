@@ -33,7 +33,7 @@ export class HashMap{
           let theRightBucket = this.buckets[hashedBucketNumber];
      //    find the right bucket
 
-          if (!theRightBucket){
+          if (theRightBucket === null){
                 // console.log('right bucket working')
                 let newBucketList = new BucketTypeLinkedList;
      //        make a new bucket, append the key, and the newBucket will be the right bucket
@@ -44,7 +44,7 @@ export class HashMap{
                // });
                this.size++;
           }else if(theRightBucket !== null){
-               console.log('right bucket is null')
+               // console.log('right bucket is null')
                let currentNode = theRightBucket.head;
                switch(true){
                     case currentNode.key === key:
@@ -54,12 +54,17 @@ export class HashMap{
                     case currentNode.key !== key 
                          && currentNode.next === null:
                          theRightBucket.append(key, value);
+                         this.size++;
                          break;
                     case currentNode.key !== key
                          && currentNode.next !== null:
-                         while (currentNode.next !== null){
-
-                         }
+                         do {
+                              currentNode = currentNode.next;
+                              if (currentNode.key === key){
+                                   currentNode.value = value;
+                                   // counter++;
+                              }
+                         } while (currentNode.next !== null)
                     default:
                          console.log('default')
                          break;
@@ -94,14 +99,23 @@ export class HashMap{
 
         }
      
-     get(key){
+          get(key){
      //       takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
      
           }
      
           has(key){
      //       takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
-     
+               let hashedBucketNumber = this.hash(key);
+                    if (this.buckets[hashedBucketNumber] !== null){
+                         let currentNode = this.buckets[hashedBucketNumber];
+                         do {
+                              if (currentNode.key = key){
+                                   return true;
+                              } else currentNode = currentNode.next;
+                         } while (currentNode.next !== null)
+                    }else return false;
+
           }
      
           remove(key){
