@@ -112,7 +112,7 @@ export class HashMap{
                               return currentNode.value;
                          } else currentNode = currentNode.next;
                     } while (currentNode.next !== null)
-                         
+
                     if (currentNode.next === null){
                          if (currentNode.key === key){
                               return currentNode.value;
@@ -137,12 +137,18 @@ export class HashMap{
                let counter = 0;
                this.buckets.forEach((bucket) => {
                     if (bucket !== null){
+                         counter++;
                          let currentNode = bucket.head;
-                         do {
-                              counter++
-                         } while (currentNode.next !== null)
+
+                         if (bucket.head.next !== null){
+                              do {
+                                   currentNode = currentNode.next;
+                                   counter++;
+                              } while (currentNode.next !== null)
+                         }
                     }
                })
+               return counter
      
           }
      

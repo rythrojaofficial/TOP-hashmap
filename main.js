@@ -56,3 +56,7 @@ testArray.forEach((key) =>{
         'value': myHash.get(key)
     })
 })
+
+console.log({
+    'length()':myHash.length()
+})
