@@ -179,6 +179,10 @@ export class HashMap{
      
           clear(){
      //       removes all entries in the hash map.
+               for (let i = 0; i < this.buckets.length; i++){
+                    this.buckets[i] = null;
+               }
+               this.size = 0;
      
           }
      

@@ -28,56 +28,26 @@ let testArray = [
     'kite',
     'lion',
 ];
-console.log({
-    'hashmap':myHash,
-    'bucket 0':myHash.buckets[0],
-    'bucket 1':myHash.buckets[1],
-    'bucket 2':myHash.buckets[2],
-    'bucket 3':myHash.buckets[3],
-    'bucket 4':myHash.buckets[4],
-    'bucket 5':myHash.buckets[5],
-    'bucket 6':myHash.buckets[6],
-    'bucket 7':myHash.buckets[7],
-    'bucket 8':myHash.buckets[8],
-    'bucket 9':myHash.buckets[9],
-    'bucket 10':myHash.buckets[10],
-    'bucket 11':myHash.buckets[11],
-    'bucket 12':myHash.buckets[12],
-    'bucket 13':myHash.buckets[13],
-    'bucket 14':myHash.buckets[14],
-    'bucket 15':myHash.buckets[15],
+console.log(myHash)
+for (let i = 0; i < myHash.buckets.length; i++){
+    console.log(`bucket ${i} : ${myHash.buckets[i]}`)
+}
 
-})
+// testArray.forEach((key) =>{
 
-testArray.forEach((key) =>{
+//     console.log({
+//         'key': key,
+//         'value': myHash.get(key)
+//     })
+// })
 
-    console.log({
-        'key': key,
-        'value': myHash.get(key)
-    })
-})
 
-console.log({
-    'length()':myHash.length()
-})
-myHash.remove('frog');
-console.log({
-    'hashmap':myHash,
-    'bucket 0':myHash.buckets[0],
-    'bucket 1':myHash.buckets[1],
-    'bucket 2':myHash.buckets[2],
-    'bucket 3':myHash.buckets[3],
-    'bucket 4':myHash.buckets[4],
-    'bucket 5':myHash.buckets[5],
-    'bucket 6':myHash.buckets[6],
-    'bucket 7':myHash.buckets[7],
-    'bucket 8':myHash.buckets[8],
-    'bucket 9':myHash.buckets[9],
-    'bucket 10':myHash.buckets[10],
-    'bucket 11':myHash.buckets[11],
-    'bucket 12':myHash.buckets[12],
-    'bucket 13':myHash.buckets[13],
-    'bucket 14':myHash.buckets[14],
-    'bucket 15':myHash.buckets[15],
-
-})
+// console.log({
+//     'length()':myHash.length()
+// })
+// myHash.remove('frog');
+myHash.clear();
+console.log(myHash)
+for (let i = 0; i < myHash.buckets.length; i++){
+    console.log(`bucket ${i} : ${myHash.buckets[i]}`)
+}
