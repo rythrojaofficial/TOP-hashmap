@@ -129,6 +129,31 @@ export class HashMap{
           }
           remove(key){
      //       takes a key as an argument. If the given key is in the hash map, it should remove the entry with that key and return true. If the key isn’t in the hash map, it should return false.
+               const message = 'key not present in hash map, key/value not removed';          
+
+               let hashedBucketNumber = this.hash(key);
+               let index = 0;
+               if (this.buckets[hashedBucketNumber] !== null){
+                    let currentNode = this.buckets[hashedBucketNumber].head;
+                    do {
+                         if (currentNode.key === key){
+                              this.buckets[hashedBucketNumber].removeAt(index);
+                              this.size--;
+                              return true;
+                         } else {
+                              currentNode = currentNode.next;
+                              index++;
+                         }
+                    } while (currentNode.next !== null)
+
+                    if (currentNode.next === null){
+                         if (currentNode.key === key){
+                              this.buckets[hashedBucketNumber].removeAt(index);
+                              this.size--;
+                              return true;
+                         } else return errorMessage(message);
+                    } 
+               } else return errorMessage(message)
      
           }
      

@@ -60,7 +60,9 @@ export class BucketTypeLinkedList{
                 return;
             case (this.head.next === null):
                 // single item list
-                this.head === null;
+                console.log('poppy')
+                this.head = null;
+                this.tail = null;
                 this.size--;
                 return;
             default:
@@ -133,13 +135,16 @@ export class BucketTypeLinkedList{
             case this.head === null:
                 console.log(errorMessage('head = null'));
                 break;
+            case index === 0
+                && this.size === 1:
+                // console.log('removeatnew')
+                this.pop();
+                break;
             case index === 0:
                 this.head = this.at(1);
-                this.size--;
                 break;
             case index === this.size:
                 this.pop();
-                this.size--;
                 break;
             default:
                 this.at(index - 1).next = this.at(index + 1);
