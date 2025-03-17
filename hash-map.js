@@ -188,7 +188,20 @@ export class HashMap{
      
           keys(){
      //       returns an array containing all the keys inside the hash map.
-     
+               let array = []
+               for (let i = 0; i < this.buckets.length; i++){
+                    if (this.buckets[i] !== null){
+                         let currentNode = this.buckets[i].head;
+                         while (currentNode.next !== null){
+                              array.push(currentNode.key);
+                              currentNode = currentNode.next;
+                         }
+                         if (currentNode.next === null){
+                              array.push(currentNode.key);
+                         }
+                    }
+               }
+               return array;
           }
      
           values(){

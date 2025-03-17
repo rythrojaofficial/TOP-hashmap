@@ -46,7 +46,8 @@ for (let i = 0; i < myHash.buckets.length; i++){
 //     'length()':myHash.length()
 // })
 // myHash.remove('frog');
-myHash.clear();
+// myHash.clear();
+// console.log(myHash.keys());
 console.log(myHash)
 for (let i = 0; i < myHash.buckets.length; i++){
     console.log(`bucket ${i} : ${myHash.buckets[i]}`)
