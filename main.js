@@ -46,10 +46,11 @@ for (let i = 0; i < myHash.buckets.length; i++){
 //     'length()':myHash.length()
 // })
 // myHash.remove('frog');
-myHash.clear();
-// console.log(myHash.keys());
-// console.log(myHash.keys());
-console.log(myHash)
-for (let i = 0; i < myHash.buckets.length; i++){
-    console.log(`bucket ${i} : ${myHash.buckets[i]}`)
-}
+// myHash.clear();
+console.log(myHash.keys());
+console.log(myHash.values());
+console.log(myHash.entries());
+// console.log(myHash)
+// for (let i = 0; i < myHash.buckets.length; i++){
+//     console.log(`bucket ${i} : ${myHash.buckets[i]}`)
+// }

@@ -179,59 +179,129 @@ export class HashMap{
      
           clear(){
      //       removes all entries in the hash map.
-               for (let i = 0; i < this.buckets.length; i++){
-                    this.buckets[i] = null;
-               }
-               this.size = 0;
-     
-          }
-     
-          keys(){
-     //       returns an array containing all the keys inside the hash map.
-               let array = []
                this.buckets.forEach((bucket) => {
+                    bucket = null;
+               })
+               this.size = 0; 
+          }
+          keys(){
+    // //       returns an array containing all the keys inside the hash map.
+               // recursive approach
+               let array = [];
+               function recursiveKeySearch(node){
+                    if(!node) return;
+                    array.push(node.key);
+                    recursiveKeySearch(node.next);               
+               }
+               this.buckets.forEach((bucket) =>{
                     if (bucket !== null){
-                         let currentNode = bucket.head;
-                         while (currentNode.next !== null){
-                              array.push(currentNode.key);
-                              currentNode = currentNode.next;
-                         }
-                         if (currentNode.next === null){
-                              array.push(currentNode.key);
-                         }
+                         recursiveKeySearch(bucket.head);
                     }
                })
-               return array;
+               return array
+
+                //        iterative approach
+     //           let array = []
+     //           this.buckets.forEach((bucket) => {
+     //                if (bucket !== null){
+     //                     let currentNode = bucket.head;
+     //                     while (currentNode.next !== null){
+     //                          array.push(currentNode.key);
+     //                          currentNode = currentNode.next;
+     //                     }
+     //                     if (currentNode.next === null){
+     //                          array.push(currentNode.key);
+     //                     }
+     //                }
+     //           })
+     //           return array;
           }
      
           values(){
      //       returns an array containing all the values.
                
                let array = [];
-               this.buckets.forEach((bucket)=>{
-                    if (bucket !== null){
-                         let currentNode = bucket.head;
-                         while (currentNode.next !== null){
-                              array.push(currentNode.value);
-                              currentNode = currentNode.next;
-                         }
-                         if (currentNode.next === null){
-                              array.push(currentNode.value);
-                         }
+               function recursiveGetValues(node){
+                    if (!node) return;
+                    array.push(node.value);
+                    recursiveGetValues(node.next);
+               }
+               this.buckets.forEach((bucket) =>{
+                    if(bucket !== null){
+                         recursiveGetValues(bucket.head)
                     }
+                    
+
                })
-               
                return array;
+
+          //      let array = [];
+          //      this.buckets.forEach((bucket)=>{
+          //           if (bucket !== null){
+          //                let currentNode = bucket.head;
+          //                while (currentNode.next !== null){
+          //                     array.push(currentNode.value);
+          //                     currentNode = currentNode.next;
+          //                }
+          //                if (currentNode.next === null){
+          //                     array.push(currentNode.value);
+          //                }
+          //           }
+          //      })
+               
+          //      return array;
      
           }
      
           entries(){
      //       returns an array that contains each key, value pair. Example: [[firstKey, firstValue], [secondKey, secondValue]]
-     
-          }
+               //  recursive approach
+               let array = [];
+               function recursiveGetEntries(node){
+                    if (!node) return;
+                    let pairArray = [];
+                    pairArray.push(
+                         node.key,
+                         node.value
+                    );
+                    array.push(pairArray);
+                    recursiveGetEntries(node.next)
+               }
+               this.buckets.forEach((bucket) => {
+                    if (bucket !== null){
+                         recursiveGetEntries(bucket.head)
+                    }
+               })
+               return array;
+     //        iterative approach
+
+          //      let array = [];
+          //      this.buckets.forEach((bucket) => {
+          //           if (bucket !== null){
+          //                let currentNode = bucket.head;
+
+          //                while(currentNode.next !== null){
+          //                     let pairArray = [];
+          //                     pairArray.push(currentNode.key);
+          //                     pairArray.push(currentNode.value);
+          //                     array.push(pairArray);
+          //                     currentNode = currentNode.next;
+          //                }
+
+          //                if (currentNode.next === null){
+          //                     let pairArray = [];
+          //                     pairArray.push(currentNode.key);
+          //                     pairArray.push(currentNode.value);
+          //                     array.push(pairArray);
+          //                }
+          //           }
+          //      })
+
+          //      return array;
+          // }
 
 
 
 
       }
-           
+}
