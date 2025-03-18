@@ -29,7 +29,7 @@ export class HashMap{
     
       set(key, value){
         // insert key value pair into hash map
-
+          this.growBuckets();
           const hashedBucketNumber = this.hash(key);
           let theRightBucket = this.buckets[hashedBucketNumber];
      //    find the right bucket
@@ -40,16 +40,12 @@ export class HashMap{
      //        make a new bucket, append the key, and the newBucket will be the right bucket
                newBucketList.append(key, value);
                this.buckets[hashedBucketNumber] = newBucketList;
-               // console.log({
-               //      "theRightBucket":this.buckets[hashedBucketNumber]
-               // });
                this.size++;
           }else if(theRightBucket !== null){
                // console.log('right bucket is null')
                let currentNode = theRightBucket.head;
                switch(true){
                     case currentNode.key === key:
-                         console.log('key = key')
                          currentNode.value = value;
                          break;
                     case currentNode.key !== key 
@@ -71,31 +67,22 @@ export class HashMap{
                          break;
                }     
           }
-           
-
-                    // if (currentNode.next === null){
-                    //      console.log('working')
-
-                    // let counter = 0;
-                    // while (currentNode.nextNode !== null){
-                    //      if (currentNode.key === key){
-                    //           currentNode.value = value;
-                    //           counter++;
-                    //      }
-                    //      currentNode = currentNode.nextNode
-                    // }
-                    // if (counter === 0){
-                    //      theRightBucket.append(key, value);
-                    //      this.size++;
-                    // }
-                    // }
-          // }
-              
-          // }
       }
 
-      checkCollision(key, value){
-        
+      growBuckets(){
+          if (this.length() > Math.floor(this.capacity * this.loadfactor)){
+               let oldBuckets = this.buckets;
+               this.capacity *= 2;
+               this.clear();
+
+               oldBuckets.forEach((bucket) =>{
+                    let currentNode = bucket.head;
+                    while (currentNode !== null){
+                         this.buckets.set(currentNode.key, currentNode.value);
+                         currentNode = currentNode.next;
+                    }
+               })
+          }
 
 
         }
@@ -299,8 +286,6 @@ export class HashMap{
 
           //      return array;
           // }
-
-
 
 
       }
