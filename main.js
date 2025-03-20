@@ -13,6 +13,7 @@ myHash.set('ice cream', 'white')
 myHash.set('jacket', 'blue')
 myHash.set('kite', 'pink')
 myHash.set('lion', 'golden')
+myHash.set('gyatt', 'dayumm')
 
 let testArray = [
     'apple', 
@@ -47,9 +48,21 @@ for (let i = 0; i < myHash.buckets.length; i++){
 // })
 // myHash.remove('frog');
 // myHash.clear();
-console.log(myHash.keys());
-console.log(myHash.values());
-console.log(myHash.entries());
+// console.log(myHash.keys());
+// console.log(myHash.values());
+// console.log(myHash.entries());
+// console.log(myHash.length())
+
+// console.log({
+//     'length': myHash.length(),
+//     'load factor x capacity': myHash.loadfactor*myHash.capacity
+// }
+//     )
+// myHash.growBuckets();
+// console.log(myHash)
+// for (let i = 0; i < myHash.buckets.length; i++){
+//     console.log(`bucket ${i} : ${myHash.buckets[i]}`)
+// }
 // console.log(myHash)
 // for (let i = 0; i < myHash.buckets.length; i++){
 //     console.log(`bucket ${i} : ${myHash.buckets[i]}`)

@@ -1,4 +1,3 @@
-import { Node } from "./node.js";
 import { BucketTypeLinkedList } from "./linked-list.js";
 import { errorMessage } from "./console.js";
 
@@ -29,7 +28,12 @@ export class HashMap{
     
       set(key, value){
         // insert key value pair into hash map
-          this.growBuckets();
+
+        let safeLength = Math.floor(this.capacity*this.loadfactor);
+          if (this.length() >= safeLength){
+               this.growBuckets();
+          } // double buckets if you go over load capacity
+
           const hashedBucketNumber = this.hash(key);
           let theRightBucket = this.buckets[hashedBucketNumber];
      //    find the right bucket
@@ -42,7 +46,7 @@ export class HashMap{
                this.buckets[hashedBucketNumber] = newBucketList;
                this.size++;
           }else if(theRightBucket !== null){
-               // console.log('right bucket is null')
+               console.log({"theRightBucket": theRightBucket})
                let currentNode = theRightBucket.head;
                switch(true){
                     case currentNode.key === key:
@@ -58,9 +62,7 @@ export class HashMap{
                          do {
                               currentNode = currentNode.next;
                               if (currentNode.key === key){
-                                   currentNode.value = value;
-                                   // counter++;
-                              }
+                                   currentNode.value = value;                              }
                          } while (currentNode.next !== null)
                     default:
                          console.log('default')
@@ -70,21 +72,12 @@ export class HashMap{
       }
 
       growBuckets(){
-          if (this.length() > Math.floor(this.capacity * this.loadfactor)){
-               let oldBuckets = this.buckets;
-               this.capacity *= 2;
-               this.clear();
-
-               oldBuckets.forEach((bucket) =>{
-                    let currentNode = bucket.head;
-                    while (currentNode !== null){
-                         this.buckets.set(currentNode.key, currentNode.value);
-                         currentNode = currentNode.next;
-                    }
-               })
-          }
-
-
+          let oldEntries = this.entries();
+          this.capacity *= 2;
+          this.clear();
+          oldEntries.forEach((kvEntry) => {
+               this.set(kvEntry[0], kvEntry[1]);
+          })
         }
      
           get(key){
@@ -166,9 +159,7 @@ export class HashMap{
      
           clear(){
      //       removes all entries in the hash map.
-               this.buckets.forEach((bucket) => {
-                    bucket = null;
-               })
+               this.buckets = new Array(this.capacity).fill(null);
                this.size = 0; 
           }
           keys(){
